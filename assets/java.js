@@ -16,7 +16,7 @@ $(document).ready(function(){
     timer: 20,
     timerOn: false,
     timerId : '',
-    // questions options and answers data
+    // questions+options+answers data
     questions: {
       q1: 'Captain America shield is made of..',
       q2: 'What is the name of Tony Starks personal butler?',
@@ -45,7 +45,7 @@ $(document).ready(function(){
       q7: 'Vin Diesel'
     },
     // trivia methods
-    // method to initialize game
+    // initialize game
     startGame: function(){
       // restarting game results
       trivia.currentSet = 0;
@@ -53,22 +53,18 @@ $(document).ready(function(){
       trivia.incorrect = 0;
       trivia.unanswered = 0;
       clearInterval(trivia.timerId);
-      
-      // show game section
+      // shows game
       $('#game').show();
-      
-      //  empty last results
+      //  clers last game
       $('#results').html('');
-      
-      // show timer
+      // shows countdown
       $('#timer').text(trivia.timer);
-      
-      // remove start button
+      // hide the start button
       $('#start').hide();
   
       $('#remaining-time').show();
       
-      // ask first question
+      // calls the first question
       trivia.nextQuestion();
       
     },
@@ -84,7 +80,6 @@ $(document).ready(function(){
       if(!trivia.timerOn){
         trivia.timerId = setInterval(trivia.timerRunning, 1000);
       }
-      
       // gets all the questions then indexes the current questions
       var questionContent = Object.values(trivia.questions)[trivia.currentSet];
       $('#question').text(questionContent);
@@ -121,11 +116,11 @@ $(document).ready(function(){
         
         // adds results of game (correct, incorrect, unanswered) to the page
         $('#results')
-          .html('<h3>Thank you for playing!</h3>'+
+          .html('<h3>Thanks for playing!</h3>'+
           '<p>Correct: '+ trivia.correct +'</p>'+
           '<p>Incorrect: '+ trivia.incorrect +'</p>'+
           '<p>Unaswered: '+ trivia.unanswered +'</p>'+
-          '<p>Please play again!</p>');
+          '<p>Press here to start over!</p>');
         
         // hide game sction
         $('#game').hide();
